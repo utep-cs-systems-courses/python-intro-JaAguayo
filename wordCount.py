@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 import re 
 import sys
 import subprocess # executing program
@@ -29,7 +28,7 @@ subprocess.call(["python3", "./wordCount.py", inputFname, outputFname])
 
 word_count = {}
     
-with open('speech.txt', 'r') as inputFile:
+with open(inputFname, 'r') as inputFile:
     for line in inputFile:
         # get rid of newline characters
         line = line.strip()
@@ -40,6 +39,11 @@ with open('speech.txt', 'r') as inputFile:
                 word_count[word.lower()] += 1
             else:
                 word_count[word.lower()] = 1
+                
+sort_words =  dict(sorted(word_count.items(),key=lambda item: item[0]))
+del sort_words['']
 
-sortWords =  dict(sorted(word_count.items(),key=lambda item: item[0]))
+with open(outputFname, 'w') as outputFile:
+    for k,v in sort_words.items():
+        print(k,v, file=outputFile)
         
