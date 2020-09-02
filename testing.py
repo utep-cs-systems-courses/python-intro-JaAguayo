@@ -27,6 +27,5 @@ if __name__ == "__main__":
         
     with open("output.txt", 'w') as f:
         for k,v in sort_words.items():
-            print(k,v,file=f)
-            
+            print(k,file=f)
     
